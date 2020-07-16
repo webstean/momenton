@@ -1,0 +1,12 @@
+
+Tests via YML
+    1. Go Formatting (go Fmt)
+    2. Suspicious constructs (go Vet)
+
+Versioning / Deployment 
+
+Leverage github release feature, create releases for each version that is stage, tested 
+and deployed (for End user aceptable testing)
+
+
+

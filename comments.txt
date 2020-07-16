@@ -1,0 +1,26 @@
+Images created by provided Dockerfile is 422MB
+
+C:\Users\andreww>docker ps --size
+CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS
+ NAMES               SIZE
+01e810f67b46        be7e5908d51d        "/app/golang-test"   7 minutes ago       Up 7 minutes        8000/tcp
+ practical_faraday   22B (virtual 422MB)
+
+ This can be greatly reduced by using multi-stage or build pattern where the container is compile and then
+ just the exectuable is copied into a small alpine container with no go build or runtime components.
+
+ As go is a static language all the modules wanted by the application are compiled into the executable
+ so that there are no libraries (shared libraries/DLLs/dependencies). This greatly reduces the attack 
+ of the container.
+ 
+C:\Users\andreww>docker ps --size
+CONTAINER ID        IMAGE               COMMAND              CREATED             STATUS              PORTS               NAMES               SIZE
+98770783d14f        c0bd07e08e98        "/app/golang-test"   20 seconds ago      Up 18 seconds       8000/tcp            lucid_lamarr        0B (virtual 13.6MB)
+01e810f67b46        be7e5908d51d        "/app/golang-test"   28 minutes ago      Up 28 minutes       8000/tcp            practical_faraday   22B (virtual 422MB)
+
+In this example the size of the container goes down from 422MB to 14MBs!
+
+The updated Dcoker file to achieve this is in this repository.
+
+My preferred programming language is Golang
+
