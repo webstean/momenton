@@ -1,7 +1,10 @@
 
+The SHA has for the last GIT commit is inserted by the Makefile
+
 Tests via YML
-    1. Go Formatting (go Fmt)
-    2. Suspicious constructs (go Vet)
+    1. Go Formatting (with go Fmt)
+    2. Suspicious constructs (with go Vet)
+    3. Test API calls (not yet implemented, but there are huge number of packages for automating this)
 
 Versioning / Deployment 
 

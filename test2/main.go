@@ -6,21 +6,17 @@ import (
 	"net/http"
 )
 
-var GitCommit string
-
-func webhome(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Server", "A Go Web Server")
-	w.WriteHeader(200)
-}
+// subsituted at compile time
+var Lastcommitsha string
 
 type Version struct {
-	version       string
-	lastcommitsha string
-	description   string
+	Version       string
+	Lastcommitsha string
+	Description   string
 }
 
 func webversion(w http.ResponseWriter, r *http.Request) {
-	appversion := Version{"1.0", GitCommit, "pre-interview technical test"}
+	appversion := Version{"1.0", Lastcommitsha, "pre-interview technical test"}
 
 	js, err := json.Marshal(appversion)
 	if err != nil {
@@ -32,7 +28,7 @@ func webversion(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	fmt.Printf("Starting Web Server...(%s)", GitCommit)
+	fmt.Printf("Starting Web Server...(%s)", Lastcommitsha)
 	http.HandleFunc("/version", webversion)
 	http.ListenAndServe(":3000", nil)
 }
